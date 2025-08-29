@@ -15,22 +15,31 @@ def view_tasks():
 
 # Step 4: Delete a task
 def delete_task(list):
-    kill = input("What task would you like to remove: ")
+    kill = input("What task would you like to remove (if none, enter none): ")
     spot = 0
-    if list[spot] == kill:
-        list.pop(spot)
+    if kill == "none":
+        return
     else:
-        spot = spot + 1
+        for task in list:
+            if list[spot] == kill:
+                tasks.pop(spot)
+            else:
+                spot = spot + 1
 
 # Step 5: Mark task complete
 def mark_complete(list):
-    completed = input("What is completed: ")
+    completed = input("What is completed (if none, enter none): ")
     spot = 0
-    if list[spot] == completed:
-        finished.append(list[spot])
-        list.pop(spot)
+    if completed == "none":
+        return
     else:
-        spot = spot + 1
+        for task in list:
+            if list[spot] == completed:
+                finished.append(list[spot])
+                tasks.pop(spot)
+            else:
+                spot = spot + 1
+    print(finished)
 
 
 # Step 6: Save/load tasks (extra stretch for today)
@@ -40,7 +49,8 @@ def mark_complete(list):
 if __name__ == "__main__":
     add_task("Finish Cyber 201 assignment")
     add_task("Push code to GitHub")
-    view_tasks(tasks)
-    mark_complete(0)
     view_tasks()
-    save_tasks()
+    mark_complete(tasks)
+    delete_task(tasks)
+    view_tasks()
+    #save_tasks()
